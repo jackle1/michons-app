@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'http://192.168.1.81:3000';
 
 export const fetchDates = async (): Promise<Date[]> => {
   try {
@@ -27,7 +27,7 @@ export const deleteDate = async (date: Date): Promise<void> => {
 
 export const addDate = async (date: Date): Promise<Date> => {
     try {
-      const response = await axios.post(`${BASE_URL}/dates`, { date: date.toISOString() });
+      const response = await axios.post(`${BASE_URL}/dates/add`, { date: date.toISOString() });
       if (response.data && response.data.date) {
         return new Date(response.data.date);
       }

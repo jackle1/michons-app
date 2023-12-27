@@ -4,9 +4,9 @@ import DateModel, { IDate } from '../models/Date';
 const router = express.Router();
 
 // Fetch all dates
-router.get('/dates', async (req: Request, res: Response) => {
+router.get('/', async (req: Request, res: Response) => {
   try {
-    const dates: IDate[] = await DateModel.find();
+    const dates: IDate[] = await DateModel.find().sort({ date: 1 }); // 1 for ascending order
     res.json({ dates });
   } catch (err) {
     res.status(500).json({ message: 'Unable to get dates' });
@@ -14,7 +14,7 @@ router.get('/dates', async (req: Request, res: Response) => {
 });
 
 // Add a date
-router.post('/dates/add', async (req: Request, res: Response) => {
+router.post('/add', async (req: Request, res: Response) => {
   const { date } = req.body;
   const newDate = new DateModel({ date });
 
@@ -26,7 +26,7 @@ router.post('/dates/add', async (req: Request, res: Response) => {
   }
 });
 
-// Delete a date
+// Delete a date DOESN'T WORK
 router.delete('/:id', async (req: Request, res: Response) => {
     try {
       const deletedDate = await DateModel.findByIdAndDelete(req.params.id) as unknown as IDate | null;
