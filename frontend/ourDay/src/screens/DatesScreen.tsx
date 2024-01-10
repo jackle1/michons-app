@@ -1,34 +1,38 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, FlatList, StyleSheet, Button, Alert, Text, TouchableOpacity, Animated } from 'react-native';
+import { View, FlatList, StyleSheet, Button, Alert, Text, TouchableOpacity, Animated, TextInput } from 'react-native';
 import { BlurView } from 'expo-blur';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import DateItem from '../components/DateItem';
 import { fetchDates, deleteDate, addDate } from '../utils/api';
+import { IDate } from '../utils/types';
 
 const DatesScreen: React.FC = () => {
-  const [dates, setDates] = useState<Date[]>([]);
+  const [dates, setDates] = useState<IDate[]>([]);
   const [newDate, setNewDate] = useState(new Date());
+  const [newName, setNewName] = useState('');
   const [showPicker, setShowPicker] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const scaleAnim = useRef(new Animated.Value(0)).current; // The scale of the date picker
 
   useEffect(() => {
+    setIsLoading(true);
     fetchData();
   }, []);
 
   const fetchData = async () => {
     try {
       const datesFromAPI = await fetchDates();
-      console.log(datesFromAPI)
       setDates(datesFromAPI);
     } catch (error) {
       console.error('Error fetching dates:', error);
     }
+    setIsLoading(false);
   };
 
-  const handleDelete = async (date: Date) => {
+  const handleDelete = async (id: string) => {
     try {
-      await deleteDate(date);
-      setDates(dates.filter(item => item !== date));
+      await deleteDate(id);
+      setDates(dates.filter(date => date._id !== id));
     } catch (error) {
       console.error('Error deleting date:', error);
     }
@@ -36,16 +40,18 @@ const DatesScreen: React.FC = () => {
 
   const handleAddDate = async () => {
     try {
-      const addedDate = await addDate(newDate);
-      setDates([...dates, addedDate]);
+      const name = newName.trim() || "Michon and Jack's Day <3";
+      const addedDate = await addDate(newDate, name);
+      await fetchData();
       togglePicker(false); // Hide picker after date is added
+      setNewName('');
     } catch (error) {
       Alert.alert('Error', 'Failed to add date. Please try again.');
       console.error('Error adding date:', error);
     }
   };
 
-  const togglePicker = (show) => {
+  const togglePicker = (show: boolean) => {
     if (show) {
       setShowPicker(true);
       Animated.spring(scaleAnim, {
@@ -69,12 +75,19 @@ const DatesScreen: React.FC = () => {
 
   const now = new Date();
 
-  const upcomingDates = dates.filter(date => date > now);
-  upcomingDates.sort((a, b) => a.getTime() - b.getTime());
+  const upcomingDates = dates.filter(dateObj => new Date(dateObj.date) > now);
+  upcomingDates.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-  const renderDateItem = ({ item }: { item: Date }) => (
-    <DateItem date={item} onDelete={handleDelete} />
-  );
+  const renderDateItem = ({ item }: { item: IDate }) => {
+    return <DateItem date={item.date} name={item.name} onDelete={() => handleDelete(item._id)} />;
+  };
+
+  if (isLoading) {
+    return (
+      <View style={styles.container}>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -90,6 +103,12 @@ const DatesScreen: React.FC = () => {
             <TouchableOpacity style={styles.closeButton} onPress={() => togglePicker(false)}>
               <Text style={styles.closeButtonText}>X</Text>
             </TouchableOpacity>
+            <TextInput
+              style={styles.nameInput}
+              placeholder="What's our date called?"
+              value={newName}
+              onChangeText={setNewName}
+            />
             <DateTimePicker
               value={newDate}
               mode="datetime" // Allows selection of both date and time
@@ -100,11 +119,15 @@ const DatesScreen: React.FC = () => {
           </Animated.View>
         </>
       )}
-      <FlatList
-        data={upcomingDates}
-        renderItem={renderDateItem}
-        keyExtractor={(item, index) => index.toString()}
-      />
+      {dates.length > 0 ? (
+        <FlatList
+          data={dates}
+          renderItem={renderDateItem}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      ) : (
+        <Text style={styles.emptyMessage}>It's so empty here...</Text>
+      )}
     </View>
   );
 };
@@ -142,6 +165,20 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
+  },
+  emptyMessage: {
+    marginTop: 20,
+    fontSize: 18,
+    color: 'grey',
+  },
+  nameInput: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginTop: 10,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+    width: '80%', // Adjust as needed
   },
 });
 

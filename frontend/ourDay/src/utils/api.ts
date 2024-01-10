@@ -1,12 +1,17 @@
 import axios from 'axios';
+import { IDate } from "../utils/types"
 
 const BASE_URL = 'http://192.168.1.81:3000'; //IP address in wifi settings
 
-export const fetchDates = async (): Promise<Date[]> => {
+export const fetchDates = async (): Promise<IDate[]> => {
   try {
     const response = await axios.get(`${BASE_URL}/dates`);
     if (response.data && response.data.dates) {
-      return response.data.dates.map((item: { date: string }) => new Date(item.date));
+      return response.data.dates.map((item: { _id: string, date: string, name: string }) => ({
+        _id: item._id,
+        date: new Date(item.date), // Convert string to Date object
+        name: item.name
+      }));
     }
     return [];
   } catch (error) {
@@ -22,14 +27,22 @@ export const deleteDate = async (id: string): Promise<void> => {
   }
 };
 
-export const addDate = async (date: Date): Promise<Date> => {
-    try {
-      const response = await axios.post(`${BASE_URL}/dates/add`, { date: date.toISOString() });
-      if (response.data && response.data.date) {
-        return new Date(response.data.date);
+export const addDate = async (date: Date, name: string): Promise<IDate> => {
+  try {
+      const response = await axios.post(`${BASE_URL}/dates/add`, {
+          date: date.toISOString(),
+          name: name
+      });
+      if (response.data) {
+          return {
+              _id: response.data._id,
+              date: new Date(response.data.date),
+              name: response.data.name
+          };
+      } else {
+          throw new Error('Invalid response from server');
       }
-      throw new Error('Invalid response from server');
-    } catch (error) {
+  } catch (error) {
       throw new Error('Error adding date');
-    }
-  };
+  }
+};

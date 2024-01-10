@@ -15,8 +15,9 @@ router.get('/', async (req: Request, res: Response) => {
 
 // Add a date
 router.post('/add', async (req: Request, res: Response) => {
-  const { date } = req.body;
-  const newDate = new DateModel({ date });
+  const { date, name } = req.body;
+  const newName = name || "Michon and Jack's Day <3";
+  const newDate = new DateModel({ date, name: newName });
 
   try {
     const savedDate: IDate = await newDate.save();
