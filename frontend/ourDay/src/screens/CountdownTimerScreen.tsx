@@ -7,6 +7,7 @@ const CountdownTimerScreen: React.FC = () => {
   const [targetDate, setTargetDate] = useState<IDate | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
     const fetchDatesAndUpdateCountdown = async () => {
@@ -51,6 +52,30 @@ const CountdownTimerScreen: React.FC = () => {
 
     return () => clearTimeout(timer);
   }, [targetDate, timeLeft]);
+
+  const now = new Date();
+  const tomorrow = new Date(now);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  tomorrow.setHours(0, 0, 0, 0);
+  const timeUntilNextDay = tomorrow.getTime() - now.getTime();
+
+  useEffect(() => {
+    // Check if the timer has reached zero
+    const isTimerZero = timeLeft.days === 0 && timeLeft.hours === 0 && timeLeft.minutes === 0 && timeLeft.seconds === 0;
+
+    // Show confetti when timer hits zero
+    if (isTimerZero) {
+      setShowConfetti(true);
+    }
+
+    // Reset confetti and timer when the next day begins
+    const resetConfetti = setTimeout(() => {
+      setShowConfetti(false);
+      setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+    }, timeUntilNextDay);
+
+    return () => clearTimeout(resetConfetti);
+  }, [timeLeft, timeUntilNextDay]);
 
   if (isLoading) {
     return (
