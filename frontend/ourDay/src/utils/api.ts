@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://192.168.1.81:3000';
+const BASE_URL = 'http://192.168.1.81:3000'; //IP address in wifi settings
 
 export const fetchDates = async (): Promise<Date[]> => {
   try {
     const response = await axios.get(`${BASE_URL}/dates`);
     if (response.data && response.data.dates) {
-      return response.data.dates.map((dateStr: string) => new Date(dateStr));
+      return response.data.dates.map((item: { date: string }) => new Date(item.date));
     }
     return [];
   } catch (error) {
@@ -14,12 +14,9 @@ export const fetchDates = async (): Promise<Date[]> => {
   }
 };
 
-export const deleteDate = async (date: Date): Promise<void> => {
+export const deleteDate = async (id: string): Promise<void> => {
   try {
-    // Convert date to a format acceptable by your backend (e.g., ISO string)
-    const dateStr = date.toISOString(); 
-
-    await axios.delete(`${BASE_URL}/dates/${dateStr}`);
+    const response = await axios.delete(`${BASE_URL}/dates/${id}`);
   } catch (error) {
     throw new Error('Error deleting date');
   }

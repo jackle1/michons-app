@@ -26,17 +26,18 @@ router.post('/add', async (req: Request, res: Response) => {
   }
 });
 
-// Delete a date DOESN'T WORK
+// Delete a date
 router.delete('/:id', async (req: Request, res: Response) => {
-    try {
-      const deletedDate = await DateModel.findByIdAndDelete(req.params.id) as unknown as IDate | null;
-      if (!deletedDate) {
-        return res.status(404).json({ message: 'Date not found' });
-      }
-      res.json({ message: 'Date deleted' });
-    } catch (err) {
-      res.status(500).json({ message: 'Unable to delete' });
+  try {
+    console.log(req.params.id)
+    const deletedDate = await DateModel.findByIdAndDelete(req.params.id);
+    if (!deletedDate) {
+      return res.status(404).json({ message: 'Date not found' });
     }
+    res.json({ message: 'Date deleted' });
+  } catch (err) {
+    res.status(500).json({ message: 'Unable to delete' });
+  }
 });
 
 export default router;
