@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-import { fetchDates } from '../utils/api';
+import { useDates } from '../context/DatesContext';
 import { IDate } from '../utils/types';
+import ConfettiCannon from 'react-native-confetti-cannon';
 
 const CountdownTimerScreen: React.FC = () => {
+  const { dates, isLoading } = useDates();
   const [targetDate, setTargetDate] = useState<IDate | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [timeLeft, setTimeLeft] = useState({ days: '- ', hours: '- ', minutes: '- ', seconds: '- ' });
   const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
     const fetchDatesAndUpdateCountdown = async () => {
       try {
-        const upcomingDates = await fetchDates();
         const now = new Date();
-        const futureDates = upcomingDates
+        const futureDates = dates
           .filter(dateObj => new Date(dateObj.date) > now)
           .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
         const targetDateItem = {
@@ -26,23 +26,27 @@ const CountdownTimerScreen: React.FC = () => {
       } catch (error) {
         console.error("Fetch and Update Error");
       }
-      setIsLoading(false);
     };
-
-    setIsLoading(true);
+    
     fetchDatesAndUpdateCountdown();
-  }, []);
+  }, [dates]);
 
   useEffect(() => {
     if (!targetDate) return;
 
     const calculateTimeLeft = () => {
       const difference = targetDate.date.getTime() - new Date().getTime();
+
+      //HERE TEMPORARYILY UNTIL COUNTDOWN REACH 9 IS IMPLEMENTED
+      if (difference <= 0) {
+        return { days: "0", hours: "0", minutes: "0", seconds: "0" };
+      }
+
       return {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)).toString(),
+        hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString(),
+        minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)).toString(),
+        seconds: Math.floor((difference % (1000 * 60)) / 1000).toString(),
       };
     };
 
@@ -50,33 +54,17 @@ const CountdownTimerScreen: React.FC = () => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
 
-    return () => clearTimeout(timer);
-  }, [targetDate, timeLeft]);
-
-  const now = new Date();
-  const tomorrow = new Date(now);
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  tomorrow.setHours(0, 0, 0, 0);
-  const timeUntilNextDay = tomorrow.getTime() - now.getTime();
-
-  useEffect(() => {
-    // Check if the timer has reached zero
-    const isTimerZero = timeLeft.days === 0 && timeLeft.hours === 0 && timeLeft.minutes === 0 && timeLeft.seconds === 0;
-
-    // Show confetti when timer hits zero
-    if (isTimerZero) {
+    if (parseInt(timeLeft.days, 10) === 0 && 
+        parseInt(timeLeft.hours, 10) === 0 && 
+        parseInt(timeLeft.minutes, 10) === 0 && 
+        parseInt(timeLeft.seconds, 10) === 0) {
       setShowConfetti(true);
     }
 
-    // Reset confetti and timer when the next day begins
-    const resetConfetti = setTimeout(() => {
-      setShowConfetti(false);
-      setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-    }, timeUntilNextDay);
+    return () => clearTimeout(timer);
+  }, [targetDate, timeLeft]);
 
-    return () => clearTimeout(resetConfetti);
-  }, [timeLeft, timeUntilNextDay]);
-
+  //blank screen when loading
   if (isLoading) {
     return (
       <View style={styles.container}>
@@ -108,6 +96,14 @@ const CountdownTimerScreen: React.FC = () => {
             style={styles.gif}
           />
         </View>
+      )}
+      {showConfetti && (
+        <ConfettiCannon
+          count={200} // Adjust as needed
+          origin={{ x: -10, y: 0 }} // Adjust as needed
+          explosionSpeed={400} // Adjust as needed
+          fadeOut
+        />
       )}
     </View>
   );

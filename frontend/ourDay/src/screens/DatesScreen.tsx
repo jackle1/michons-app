@@ -5,17 +5,16 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import DateItem from '../components/DateItem';
 import { fetchDates, deleteDate, addDate } from '../utils/api';
 import { IDate } from '../utils/types';
+import { useDates } from '../context/DatesContext';
 
 const DatesScreen: React.FC = () => {
-  const [dates, setDates] = useState<IDate[]>([]);
+  const { dates, setDates, isLoading } = useDates();
   const [newDate, setNewDate] = useState(new Date());
   const [newName, setNewName] = useState('');
   const [showPicker, setShowPicker] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const scaleAnim = useRef(new Animated.Value(0)).current; // The scale of the date picker
 
   useEffect(() => {
-    setIsLoading(true);
     fetchData();
   }, []);
 
@@ -26,7 +25,6 @@ const DatesScreen: React.FC = () => {
     } catch (error) {
       console.error('Error fetching dates:', error);
     }
-    setIsLoading(false);
   };
 
   const handleDelete = async (id: string) => {
@@ -40,6 +38,13 @@ const DatesScreen: React.FC = () => {
 
   const handleAddDate = async () => {
     try {
+      const currentDate = new Date();
+
+      if (newDate <= currentDate) {
+        Alert.alert('That date has already passed silly...');
+        return;
+      }
+      
       const name = newName.trim() || "Michon and Jack's Day <3";
       const addedDate = await addDate(newDate, name);
       await fetchData();
@@ -121,7 +126,7 @@ const DatesScreen: React.FC = () => {
       )}
       {dates.length > 0 ? (
         <FlatList
-          data={dates}
+          data={upcomingDates}
           renderItem={renderDateItem}
           keyExtractor={(item, index) => index.toString()}
         />
