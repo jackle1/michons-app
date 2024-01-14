@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { fetchDates } from '../utils/api';
-import { IDate } from '../utils/types';
+import { IDate } from '../utils/IDate';
 
 interface DatesContextProps {
   dates: IDate[];

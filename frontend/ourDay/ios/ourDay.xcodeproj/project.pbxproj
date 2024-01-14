@@ -15,7 +15,37 @@
 		96905EF65AED1B983A6B3ABC /* libPods-ourDay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-ourDay.a */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		BC0FBAC82B50F53A00931249 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0FBAAB2B4FC80F00931249 /* WidgetKit.framework */; };
+		BC0FBAC92B50F53A00931249 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0FBAAD2B4FC81000931249 /* SwiftUI.framework */; };
+		BC0FBACC2B50F53A00931249 /* ourDay_Lockscreen_WidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0FBACB2B50F53A00931249 /* ourDay_Lockscreen_WidgetBundle.swift */; };
+		BC0FBACE2B50F53A00931249 /* ourDay_Lockscreen_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0FBACD2B50F53A00931249 /* ourDay_Lockscreen_Widget.swift */; };
+		BC0FBAD02B50F53C00931249 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC0FBACF2B50F53C00931249 /* Assets.xcassets */; };
+		BC0FBAD42B50F53C00931249 /* ourDay Lockscreen WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BC0FBAC72B50F53A00931249 /* ourDay Lockscreen WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BC0FBAD22B50F53C00931249 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BC0FBAC62B50F53A00931249;
+			remoteInfo = "ourDay Lockscreen WidgetExtension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BC0FBABE2B4FC81200931249 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BC0FBAD42B50F53C00931249 /* ourDay Lockscreen WidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		13B07F961A680F5B00A75B9A /* ourDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ourDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,6 +60,14 @@
 		7A4D352CD337FB3A3BF06240 /* Pods-ourDay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ourDay.release.xcconfig"; path = "Target Support Files/Pods-ourDay/Pods-ourDay.release.xcconfig"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = ourDay/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
+		BC0FBAAB2B4FC80F00931249 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		BC0FBAAD2B4FC81000931249 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		BC0FBAC72B50F53A00931249 /* ourDay Lockscreen WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ourDay Lockscreen WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC0FBACB2B50F53A00931249 /* ourDay_Lockscreen_WidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ourDay_Lockscreen_WidgetBundle.swift; sourceTree = "<group>"; };
+		BC0FBACD2B50F53A00931249 /* ourDay_Lockscreen_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ourDay_Lockscreen_Widget.swift; sourceTree = "<group>"; };
+		BC0FBACF2B50F53C00931249 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BC0FBAD12B50F53C00931249 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC0FBAD82B51005300931249 /* ourDay Lockscreen WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ourDay Lockscreen WidgetExtension.entitlements"; sourceTree = "<group>"; };
 		EAEB8C920F21423FA69FFD6C /* ourDay-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "ourDay-Bridging-Header.h"; path = "ourDay/ourDay-Bridging-Header.h"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-ourDay/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
@@ -41,6 +79,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				96905EF65AED1B983A6B3ABC /* libPods-ourDay.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC0FBAC42B50F53A00931249 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC0FBAC92B50F53A00931249 /* SwiftUI.framework in Frameworks */,
+				BC0FBAC82B50F53A00931249 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +115,8 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				58EEBF8E8E6FB1BC6CAF49B5 /* libPods-ourDay.a */,
+				BC0FBAAB2B4FC80F00931249 /* WidgetKit.framework */,
+				BC0FBAAD2B4FC81000931249 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -82,8 +131,10 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				BC0FBAD82B51005300931249 /* ourDay Lockscreen WidgetExtension.entitlements */,
 				13B07FAE1A68108700A75B9A /* ourDay */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
+				BC0FBACA2B50F53A00931249 /* ourDay Lockscreen Widget */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
@@ -98,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* ourDay.app */,
+				BC0FBAC72B50F53A00931249 /* ourDay Lockscreen WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,6 +169,17 @@
 			);
 			name = Supporting;
 			path = ourDay/Supporting;
+			sourceTree = "<group>";
+		};
+		BC0FBACA2B50F53A00931249 /* ourDay Lockscreen Widget */ = {
+			isa = PBXGroup;
+			children = (
+				BC0FBACB2B50F53A00931249 /* ourDay_Lockscreen_WidgetBundle.swift */,
+				BC0FBACD2B50F53A00931249 /* ourDay_Lockscreen_Widget.swift */,
+				BC0FBACF2B50F53C00931249 /* Assets.xcassets */,
+				BC0FBAD12B50F53C00931249 /* Info.plist */,
+			);
+			path = "ourDay Lockscreen Widget";
 			sourceTree = "<group>";
 		};
 		D65327D7A22EEC0BE12398D9 /* Pods */ = {
@@ -152,15 +215,34 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
 				FE1FF958DEBEAF41359F23D0 /* [CP] Embed Pods Frameworks */,
+				BC0FBABE2B4FC81200931249 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BC0FBAD32B50F53C00931249 /* PBXTargetDependency */,
 			);
 			name = ourDay;
 			productName = ourDay;
 			productReference = 13B07F961A680F5B00A75B9A /* ourDay.app */;
 			productType = "com.apple.product-type.application";
+		};
+		BC0FBAC62B50F53A00931249 /* ourDay Lockscreen WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC0FBAD52B50F53C00931249 /* Build configuration list for PBXNativeTarget "ourDay Lockscreen WidgetExtension" */;
+			buildPhases = (
+				BC0FBAC32B50F53A00931249 /* Sources */,
+				BC0FBAC42B50F53A00931249 /* Frameworks */,
+				BC0FBAC52B50F53A00931249 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ourDay Lockscreen WidgetExtension";
+			productName = "ourDay Lockscreen WidgetExtension";
+			productReference = BC0FBAC72B50F53A00931249 /* ourDay Lockscreen WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -168,10 +250,14 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1510;
 				LastUpgradeCheck = 1130;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1250;
+					};
+					BC0FBAC62B50F53A00931249 = {
+						CreatedOnToolsVersion = 15.1;
 					};
 				};
 			};
@@ -189,6 +275,7 @@
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* ourDay */,
+				BC0FBAC62B50F53A00931249 /* ourDay Lockscreen WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -201,6 +288,14 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC0FBAC52B50F53A00931249 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC0FBAD02B50F53C00931249 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,13 +428,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BC0FBAC32B50F53A00931249 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC0FBACE2B50F53A00931249 /* ourDay_Lockscreen_Widget.swift in Sources */,
+				BC0FBACC2B50F53A00931249 /* ourDay_Lockscreen_WidgetBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BC0FBAD32B50F53C00931249 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BC0FBAC62B50F53A00931249 /* ourDay Lockscreen WidgetExtension */;
+			targetProxy = BC0FBAD22B50F53C00931249 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6C2E3173556A471DD304B334 /* Pods-ourDay.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ourDay/ourDay.entitlements;
@@ -377,6 +490,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7A4D352CD337FB3A3BF06240 /* Pods-ourDay.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ourDay/ourDay.entitlements;
@@ -538,6 +652,99 @@
 			};
 			name = Release;
 		};
+		BC0FBAD62B50F53C00931249 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "ourDay Lockscreen WidgetExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = G9EY8Z3LR4;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ourDay Lockscreen Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "ourDay Lockscreen Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jack.ourDay.ourDay-Lockscreen-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BC0FBAD72B50F53C00931249 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "ourDay Lockscreen WidgetExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = G9EY8Z3LR4;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ourDay Lockscreen Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "ourDay Lockscreen Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jack.ourDay.ourDay-Lockscreen-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -555,6 +762,15 @@
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
 				83CBBA211A601CBA00E9B192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BC0FBAD52B50F53C00931249 /* Build configuration list for PBXNativeTarget "ourDay Lockscreen WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC0FBAD62B50F53C00931249 /* Debug */,
+				BC0FBAD72B50F53C00931249 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

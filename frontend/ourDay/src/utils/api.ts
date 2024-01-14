@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { IDate } from "../utils/types"
+import { IDate } from "./IDate"
 
-const BASE_URL = 'http://192.168.1.81:3000'; //IP address in wifi settings
+const BASE_URL = 'http://ourDay.us-east-2.elasticbeanstalk.com'; //IP address in wifi settings
 
 export const fetchDates = async (): Promise<IDate[]> => {
   try {

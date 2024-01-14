@@ -4,7 +4,7 @@ import { BlurView } from 'expo-blur';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import DateItem from '../components/DateItem';
 import { fetchDates, deleteDate, addDate } from '../utils/api';
-import { IDate } from '../utils/types';
+import { IDate } from '../utils/IDate';
 import { useDates } from '../context/DatesContext';
 
 const DatesScreen: React.FC = () => {
@@ -45,7 +45,7 @@ const DatesScreen: React.FC = () => {
         return;
       }
       
-      const name = newName.trim() || "Michon and Jack's Day <3";
+      const name = newName.trim() || "Michon and Jack's Day";
       const addedDate = await addDate(newDate, name);
       await fetchData();
       togglePicker(false); // Hide picker after date is added

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { useDates } from '../context/DatesContext';
-import { IDate } from '../utils/types';
+import { IDate } from '../utils/IDate';
 import ConfettiCannon from 'react-native-confetti-cannon';
 
 const CountdownTimerScreen: React.FC = () => {
@@ -17,12 +17,18 @@ const CountdownTimerScreen: React.FC = () => {
         const futureDates = dates
           .filter(dateObj => new Date(dateObj.date) > now)
           .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-        const targetDateItem = {
-          date: futureDates[0].date,
-          _id: futureDates[0]._id,
-          name: futureDates[0].name,
-        };
-        setTargetDate(targetDateItem);
+        if (futureDates.length > 0) {
+          const targetDateItem = {
+            date: futureDates[0].date,
+            _id: futureDates[0]._id,
+            name: futureDates[0].name,
+          };
+          setTargetDate(targetDateItem);
+        } else {
+          // Handle scenario when there are no future dates
+          setTargetDate(null);
+          // You can also reset other relevant states or handle this case as needed
+        }
       } catch (error) {
         console.error("Fetch and Update Error");
       }
@@ -77,9 +83,9 @@ const CountdownTimerScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>{targetDate?.name}</Text>
       {targetDate && !isLoading ? (
         <View style={styles.countdownContainer}>
+          <Text style={styles.headerText}>{targetDate?.name} in:</Text>
           <Text style={styles.countdownText}>{countdownTimer}</Text>
           <View style={styles.gifContainer}>
             <Image
@@ -120,6 +126,8 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 20,
+    textAlign: 'center',
+    maxWidth: 300,
   },
   noDatesView: {
     alignItems: 'center',
